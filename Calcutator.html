@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Starry Night Calculator</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background-color: #0d3b66;
+        background-image: linear-gradient(145deg, #0d3b66 50%, #214e7d 50%);
+      }
+      .calculator {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 15px;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+        border: 2px solid #3e78b2;
+      }
+      .display {
+        width: 100%;
+        padding: 15px;
+        margin-bottom: 15px;
+        font-size: 1.8em;
+        text-align: right;
+        border: none;
+        background-color: #f7e9c0;
+        border-radius: 10px;
+        color: #0d3b66;
+        box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+      }
+      .button-row {
+        display: flex;
+        justify-content: space-between;
+      }
+      .button {
+        width: 22%;
+        padding: 20px;
+        margin: 5px 0;
+        font-size: 1.4em;
+        text-align: center;
+        cursor: pointer;
+        border-radius: 10px;
+        background-color: #3e78b2;
+        color: #fff;
+        border: none;
+        box-shadow: 0 4px #214e7d;
+        transition: all 0.2s ease;
+      }
+      .button.operator {
+        background-color: #f4a261;
+        color: #fff;
+        box-shadow: 0 4px #d68641;
+      }
+      .button.clear {
+        background-color: #d62828;
+        color: #fff;
+        box-shadow: 0 4px #a81f1f;
+      }
+      .button.equal {
+        width: 100%;
+        background-color: #f7b801;
+        color: #0d3b66;
+        box-shadow: 0 4px #c69301;
+      }
+      .button:active {
+        transform: translateY(4px);
+        box-shadow: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="calculator">
+      <input type="text" id="display" class="display" disabled />
+      <div class="button-row">
+        <button class="button" onclick="appendNumber('7')">7</button>
+        <button class="button" onclick="appendNumber('8')">8</button>
+        <button class="button" onclick="appendNumber('9')">9</button>
+        <button class="button operator" onclick="appendOperator('/')">/</button>
+      </div>
+      <div class="button-row">
+        <button class="button" onclick="appendNumber('4')">4</button>
+        <button class="button" onclick="appendNumber('5')">5</button>
+        <button class="button" onclick="appendNumber('6')">6</button>
+        <button class="button operator" onclick="appendOperator('*')">*</button>
+      </div>
+      <div class="button-row">
+        <button class="button" onclick="appendNumber('1')">1</button>
+        <button class="button" onclick="appendNumber('2')">2</button>
+        <button class="button" onclick="appendNumber('3')">3</button>
+        <button class="button operator" onclick="appendOperator('-')">-</button>
+      </div>
+      <div class="button-row">
+        <button class="button" onclick="appendNumber('0')">0</button>
+        <button class="button" onclick="appendOperator('.')">.</button>
+        <button class="button clear" onclick="clearDisplay()">C</button>
+        <button class="button operator" onclick="appendOperator('+')">+</button>
+      </div>
+      <div class="button-row">
+        <button class="button equal" onclick="calculate()">=</button>
+      </div>
+    </div>
+
+    <script>
+      function appendNumber(number) {
+        document.getElementById("display").value += number;
+      }
+
+      function appendOperator(operator) {
+        document.getElementById("display").value += operator;
+      }
+
+      function clearDisplay() {
+        document.getElementById("display").value = "";
+      }
+
+      function calculate() {
+        let expression = document.getElementById("display").value;
+        if (expression) {
+          try {
+            document.getElementById("display").value = eval(expression);
+          } catch (error) {
+            alert("Invalid Expression");
+          }
+        }
+      }
+    </script>
+  </body>
+</html>
